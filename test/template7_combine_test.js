@@ -30,7 +30,7 @@ exports.template7_combine = {
   defaults: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('scripts/templates.js');
+    var actual = grunt.file.read('tmp/templates.js');
     var expected = grunt.file.read('test/expected/templates.js');
     test.equal(actual, expected, 'should describe what the default behavior is.');
 

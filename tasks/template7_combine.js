@@ -40,7 +40,8 @@ module.exports = function(grunt) {
 
       var calcHTML = function(filepath){
         var filepaths = filepath.split('/');
-        var name = filepaths[filepaths.length-1];
+        var name = filepaths[filepaths.length-1].split('.');
+        name.pop();
         return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath) +'\');';
       };
 
