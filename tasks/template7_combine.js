@@ -22,6 +22,8 @@ module.exports = function(grunt) {
 
     var tplsClub = {};
     var ln = grunt.util.normalizelf('\n');
+    var optional = this.options();
+    var template7_rename = optional ? (optional.rename ? optional.rename : 'template7') : 'template7';
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
@@ -38,6 +40,7 @@ module.exports = function(grunt) {
         }
       };
 
+
       var calcHTML = function(filepath){
         var filepaths = filepath.split('/');
         var name = filepaths[filepaths.length-1].split('.');
@@ -45,7 +48,7 @@ module.exports = function(grunt) {
         return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath).replace(/(\n)*/g,'') +'\');';
       };
 
-      context += ';define(function() {' + ln + '  var tplsClub = {};' + ln + '  var tpls = window.Template7;' + ln + '  ';
+      context += ';define(["'+ template7_rename +'"],function(tpls) {' + ln + '  var tplsClub = {};' + ln + '  ';
       context += f.src.filter(filter).map(calcHTML).join('\n  ');
       context += ln + '  return tplsClub;'+ ln +'})';
 

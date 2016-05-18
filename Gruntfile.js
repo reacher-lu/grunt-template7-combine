@@ -32,6 +32,7 @@ module.exports = function(grunt) {
     template7_combine: {
       defaults: {
         options: {
+          rename:'tpls'
         },
         files: {
           'scripts/templates.js': ['scripts/hbs/*.hbs']
@@ -39,6 +40,7 @@ module.exports = function(grunt) {
       },
       tests: {
         options: {
+          rename:'tpls'
         },
         files: {
           'tmp/templates.js': ['test/fixtures/*.hbs']

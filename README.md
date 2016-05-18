@@ -27,6 +27,7 @@ grunt.initConfig({
   template7_combine: {
     options: {
       // Task-specific options go here.
+      rename:'tpls'  //default value : 'template7' it is the shim name of your require.config
     },
     your_target: {
       // Target-specific file lists and/or options go here.eg:
