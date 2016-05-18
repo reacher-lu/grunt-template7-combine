@@ -29,7 +29,10 @@ grunt.initConfig({
       // Task-specific options go here.
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      // Target-specific file lists and/or options go here.eg:
+      files: {
+        'app/scripts/templates.js': ['app/scripts/hbs/*.hbs']
+      }
     },
   },
 });
