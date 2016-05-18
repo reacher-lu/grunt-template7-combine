@@ -34,7 +34,14 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'scripts/templates.js': ['test/fixtures/testing', 'test/fixtures/123']
+          'scripts/templates.js': ['scripts/hbs/*.hbs']
+        }
+      },
+      tests: {
+        options: {
+        },
+        files: {
+          'tmp/templates.js': ['test/fixtures/testing', 'test/fixtures/123']
         }
       },
       // custom_options: {
@@ -65,9 +72,9 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'template7_combine', 'nodeunit']);
+  grunt.registerTask('test', ['clean:tests', 'template7_combine:tests', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['template7_combine:defaults']);
 
 };

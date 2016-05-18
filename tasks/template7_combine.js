@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       context += f.src.filter(filter).map(calcHTML).join('\n  ');
       context += ln + '  return tplsClub;'+ ln +'})';
 
-      grunt.log.writeln('context',context);
+      // grunt.log.writeln('context',context);
 
 
       // var compiledTemplate = tpls.compile(src);
