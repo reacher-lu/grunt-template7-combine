@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath).replace(/(\n)*/g,'') +'\');';
       };
 
-      context += ';define(function() {' + ln + '  var tplsClub = {};' + ln + '  ';
+      context += ';define(function() {' + ln + '  var tplsClub = {};' + ln + '  var tpls = window.Template7;' + ln + '  ';
       context += f.src.filter(filter).map(calcHTML).join('\n  ');
       context += ln + '  return tplsClub;'+ ln +'})';
 
