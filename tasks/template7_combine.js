@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         var filepaths = filepath.split('/');
         var name = filepaths[filepaths.length-1].split('.');
         name.pop();
-        return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath).replace(/(\n)*/g,'') +'\');';
+        return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath).replace(/(\n(\s)*)*/g,'') +'\');';
       };
 
       context += ';define(["'+ template7_rename +'"],function(tpls) {' + ln + '  var tplsClub = {};' + ln + '  ';
