@@ -1,5 +1,6 @@
 ;define(function() {
-  tplsClub.testing = tpls.compile('Hello, my name is {{firstName}} {{lastName}}');
-  tplsClub.123 = tpls.compile('Bye , {{firstName}} {{lastName}}');
+  var tplsClub = {};
+  tplsClub.test1 = tpls.compile('Hello, my name is {{firstName}} {{lastName}}');
+  tplsClub.test2 = tpls.compile('Bye , {{firstName}} {{lastName}}');
   return tplsClub;
 })

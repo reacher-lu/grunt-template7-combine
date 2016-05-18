@@ -42,10 +42,10 @@ module.exports = function(grunt) {
         var filepaths = filepath.split('/');
         var name = filepaths[filepaths.length-1].split('.');
         name.pop();
-        return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath) +'\');';
+        return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath).replace(/(\n)*/g,'') +'\');';
       };
 
-      context += ';define(function() {' + ln + '  ';
+      context += ';define(function() {' + ln + '  var tplsClub = {};' + ln + '  ';
       context += f.src.filter(filter).map(calcHTML).join('\n  ');
       context += ln + '  return tplsClub;'+ ln +'})';
 

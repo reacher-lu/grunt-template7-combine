@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'tmp/templates.js': ['test/fixtures/testing', 'test/fixtures/123']
+          'tmp/templates.js': ['test/fixtures/*.hbs']
         }
       },
       // custom_options: {
