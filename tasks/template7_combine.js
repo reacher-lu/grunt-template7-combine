@@ -23,8 +23,6 @@ module.exports = function(grunt) {
     var tplsClub = {};
     var ln = grunt.util.normalizelf('\n');
 
-    // grunt.log.writeln('this',this,this.files);
-
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
 
@@ -49,17 +47,6 @@ module.exports = function(grunt) {
       context += ';define(function() {' + ln + '  ';
       context += f.src.filter(filter).map(calcHTML).join('\n  ');
       context += ln + '  return tplsClub;'+ ln +'})';
-
-      // grunt.log.writeln('context',context);
-
-
-      // var compiledTemplate = tpls.compile(src);
-      // var context = {
-      //     firstName: 'John',
-      //     lastName: 'Doe'
-      // };
-      // var html = compiledTemplate(context);
-      // $('body').html(html);
 
       // Write the destination file.
       grunt.file.write(f.dest, context);
