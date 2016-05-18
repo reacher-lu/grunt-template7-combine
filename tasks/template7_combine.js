@@ -20,10 +20,17 @@ module.exports = function(grunt) {
       separator: ', '
     });
 
+    var tplsClub = {};
+    var ln = grunt.util.normalizelf('\n');
+
+    // grunt.log.writeln('this',this,this.files);
+
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
+
+      var context = '';
+
+      var filter = function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -31,16 +38,31 @@ module.exports = function(grunt) {
         } else {
           return true;
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+      };
 
-      // Handle options.
-      src += options.punctuation;
+      var calcHTML = function(filepath){
+        var filepaths = filepath.split('/');
+        var name = filepaths[filepaths.length-1];
+        return 'tplsClub.' + name + ' = tpls.compile(\''+ grunt.file.read(filepath) +'\');';
+      };
+
+      context += ';define(function() {' + ln + '  ';
+      context += f.src.filter(filter).map(calcHTML).join('\n  ');
+      context += ln + '  return tplsClub;'+ ln +'})';
+
+      grunt.log.writeln('context',context);
+
+
+      // var compiledTemplate = tpls.compile(src);
+      // var context = {
+      //     firstName: 'John',
+      //     lastName: 'Doe'
+      // };
+      // var html = compiledTemplate(context);
+      // $('body').html(html);
 
       // Write the destination file.
-      grunt.file.write(f.dest, src);
+      grunt.file.write(f.dest, context);
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
